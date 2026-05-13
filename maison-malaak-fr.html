@@ -1,1 +1,0 @@
-<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=index.html"><title>Maison Malaak</title><a href="index.html">Maison Malaak</a>
