@@ -153,3 +153,10 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 @media(max-width:640px){
   .nav{padding:12px 14px}.brand-name{font-size:10px;letter-spacing:.22em}.nav .book{display:none}.lang{display:none}.mobile-toggle{width:40px;height:40px}.page{padding-top:70px}.mobile-menu{padding-top:90px}.hero-copy{padding:44px 24px}.section{padding:65px 22px}.cards{grid-template-columns:1fr}.gallery img{height:170px}.contact-panel{padding:28px}.training-copy{padding:34px}.hero-actions{align-items:flex-start;flex-direction:column}.reservation-hero{padding:80px 18px 58px}.reservation-copy,.reservation-card{padding:28px}.reservation-card h2{font-size:31px}.floating-book{left:18px;right:18px;text-align:center}.ba-card img{height:280px}
 }
+
+/* 2026 editorial beauty refresh: staging branch */
+:root{--cream:#f8f3ed;--warm:#eadccf;--ivory:#fffbf6;--gold:#b99470;--gold2:#8f6b4e;--char:#392d28;--taupe:#806b5b;--rose:#e4c9bd;--sage:#d8c8b6;--shadow:0 24px 70px rgba(57,45,40,.10)}
+.hero{background:radial-gradient(circle at 12% 15%,rgba(229,194,164,.35),transparent 45%),#f8f3ed}
+.hero h1{letter-spacing:-.024em}.hero-img img{object-position:center center;transform:none}.hero-img:after{background:linear-gradient(90deg,rgba(248,243,237,.2),transparent 36%)}
+.band{background:#392d28}.card,.ba-card,.review-card{border-radius:3px}.card img,.ba-card img,.gallery img{filter:saturate(.88)}.about-card .main{object-position:center}.section-head .lead{margin-inline:auto}
+@media(max-width:960px){.hero-img{max-height:530px}}
