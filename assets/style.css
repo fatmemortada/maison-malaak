@@ -166,3 +166,73 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 .brand-logo{display:block;width:195px;height:auto;max-height:70px;object-fit:contain}
 @media(max-width:960px){.brand{min-width:165px}.brand-logo{width:165px;max-height:61px}}
 @media(max-width:640px){.brand{min-width:140px}.brand-logo{width:140px;max-height:52px}}
+
+
+/* Mobile-first editorial refinement — October 2026.
+   Scoped to small screens; desktop styling remains unchanged. */
+@media (max-width: 640px) {
+  :root { --space: 58px; }
+  html { scroll-padding-top: 76px; }
+  body { line-height: 1.65; }
+  .topbar { background: rgba(248,243,237,.97); }
+  .nav { min-height: 70px; padding: 9px 18px; gap: 10px; }
+  .brand { min-width: 0; flex: 0 1 auto; }
+  .brand-logo { width: clamp(126px,39vw,160px); max-height: 51px; }
+  .mobile-toggle { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 2px; }
+  .mobile-menu { padding: 96px 24px max(30px,env(safe-area-inset-bottom)); overflow-y: auto; }
+  .mobile-menu-inner { gap: 8px; }
+  .mobile-menu a { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; letter-spacing: .16em; }
+  .mobile-menu .mobile-book { min-height: 48px; margin-top: 10px; }
+  .page { padding-top: 70px; }
+  .hero { min-height: 0; display: flex; flex-direction: column; }
+  .hero-img { order: -1; height: clamp(270px, 76vw, 410px); min-height: 0; max-height: none; }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 36%; }
+  .hero-img:after { background: linear-gradient(0deg,rgba(57,45,40,.12),transparent 45%); }
+  .hero:before { display: none; }
+  .hero-copy { padding: 39px 24px 48px; text-align: center; align-items: center; }
+  .eyebrow { font-size: 10px; letter-spacing: .22em; margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(42px, 11vw, 58px); line-height: 1.04; margin-bottom: 17px; text-wrap: balance; }
+  .lead { font-size: 14px; line-height: 1.75; }
+  .hero-actions { width: 100%; margin-top: 27px; flex-direction: column; align-items: stretch; gap: 16px; }
+  .hero-actions .btn { width: 100%; min-height: 49px; }
+  .hero-actions .text-link { align-self: center; min-height: 36px; display: inline-flex; align-items: center; }
+  .btn { min-height: 46px; padding: 13px 22px; letter-spacing: .15em; text-align: center; }
+  .section { padding: 58px 20px; }
+  .section-head { margin-bottom: 32px; }
+  .title { font-size: clamp(35px, 9vw, 47px); line-height: 1.1; text-wrap: balance; }
+  .grid2 { gap: 36px; }
+  .cards { gap: 18px; }
+  .card img { height: auto; aspect-ratio: 4/3; object-fit: cover; }
+  .card-body { padding: 23px; }
+  .card h3 { font-size: 27px; }
+  .stats { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .stat { padding: 24px 10px; }
+  .stat strong { font-size: 34px; }
+  .stat span { font-size: 9px; letter-spacing: .12em; }
+  .gallery { gap: 6px; }
+  .gallery img { height: auto; aspect-ratio: 1/1; }
+  .about-card .accent { width: 110px; height: 110px; right: -7px; bottom: -16px; border-width: 5px; }
+  .training-card img { min-height: 0; height: auto; aspect-ratio: 4/3; }
+  .training-copy { padding: 30px 24px; }
+  .contact-panel, .reservation-copy, .reservation-card { padding: 26px 22px; }
+  .service-row { align-items: baseline; }
+  .service-row span:first-child { min-width: 0; overflow-wrap: anywhere; }
+  .service-row strong { flex-shrink: 0; }
+  .review-card { padding: 25px; }
+  .map-frame { height: 280px; }
+  .footer { padding: 48px 22px 104px; }
+  .footer .wrap { gap: 26px; }
+  .reservation-hero { min-height: 0; padding: 45px 18px 75px; }
+  .reservation-shell { gap: 24px; }
+  .floating-book { bottom: max(12px,env(safe-area-inset-bottom)); left: 16px; right: 16px; min-height: 48px; display: flex; justify-content: center; align-items: center; font-size: 11px; box-shadow: 0 12px 35px rgba(44,36,24,.22); }
+}
+@media (max-width: 360px) {
+  .hero-copy { padding-inline: 18px; }
+  .section { padding-inline: 17px; }
+  .hero h1 { font-size: 40px; }
+  .brand-logo { width: 125px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal.is-visible { transition: none; transform: none; }
+}
