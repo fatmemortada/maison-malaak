@@ -236,3 +236,67 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
   html { scroll-behavior: auto; }
   .reveal, .reveal.is-visible { transition: none; transform: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   3D Fine Lotus homepage — ported from the approved Maison Malaak 3D
+   showcase (2026-11-10). Compact sections throughout, per Fatme:
+   short pages, no long sections.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --gold-light:#E8D5A8; --ink-on-dark:#F5EFE6; --muted-on-dark:#CBBFAE;
+  --line-dark:rgba(201,169,110,.28);
+  --space:clamp(48px,6vw,78px);
+}
+.section-head{margin-bottom:34px}
+
+/* Fixed 3D layer: sits above page content, below the topbar (90),
+   the floating book button (80) and the mobile menu (100). It is
+   pointer-events:none, so it never blocks a click; the JS fades it to
+   opacity 0 whenever the hero and the picker are both out of view. */
+#gl{position:fixed;inset:0;z-index:5;pointer-events:none;transition:opacity .5s ease}
+#gl canvas{display:block;width:100%;height:100%}
+#gl .gl-fallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;background:radial-gradient(600px 400px at 72% 30%,rgba(201,169,110,.32),transparent 70%)}
+
+/* Dark lotus hero — replaces the old two-column hero (copy + photo).
+   Same headline, lead and booking CTAs; the gold lotus turns behind
+   the copy on the right (desktop) and above it (mobile). */
+.hero-lotus{min-height:86svh;display:flex;flex-direction:column;justify-content:flex-end;padding:5.5rem clamp(1.2rem,5vw,4rem) 2.2rem;position:relative;overflow:hidden;background:radial-gradient(1100px 600px at 72% 30%,rgba(201,169,110,.20),transparent 60%),linear-gradient(180deg,#241B16 0%,#1E1713 70%);color:var(--ink-on-dark)}
+.hero-lotus .hero-copy{max-width:720px;position:relative;z-index:2}
+.hero-lotus .eyebrow{color:var(--gold-light)}
+.hero-lotus h1{font-family:var(--serif);font-weight:500;font-size:clamp(48px,6vw,86px);line-height:1.06;margin-bottom:26px;color:var(--cream)}
+.hero-lotus h1 em{color:var(--gold-light);font-style:italic}
+.hero-lotus .lead{color:var(--muted-on-dark)}
+.hero-lotus .hero-meta{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:1.4rem;font-size:.86rem;letter-spacing:.06em;color:var(--muted-on-dark);align-items:center}
+.hero-lotus .hero-meta .stars{color:var(--gold);letter-spacing:.15em}
+.hero-lotus .text-link{color:var(--muted-on-dark)}
+.hero-lotus .drag-hint{position:absolute;top:16%;right:clamp(1rem,5vw,4rem);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,191,174,.75);writing-mode:vertical-rl;z-index:2}
+.hero-lotus .scroll-cue{margin-top:1.5rem;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem}
+.hero-lotus .scroll-cue::after{content:"";height:1px;width:64px;background:var(--gold);opacity:.6}
+
+/* Ritual picker — dark section; picking a ritual recolours the lotus. */
+.picker-sec{background:linear-gradient(180deg,#241B16,#171210)}
+.picker-sec .title{color:var(--cream)}
+.picker-sec .lead{color:var(--muted-on-dark)}
+.picker-sec .section-head .lead{margin-inline:auto}
+.rituals{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin:1.3rem 0 1.1rem}
+.ritual{appearance:none;border:1px solid var(--line-dark);background:rgba(250,247,242,.04);color:var(--ink-on-dark);border-radius:6px;padding:1.05rem .9rem;text-align:left;cursor:pointer;font-family:inherit;min-height:4.6rem}
+.ritual b{display:block;font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.1}
+.ritual span{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-on-dark)}
+.ritual[aria-pressed="true"]{border-color:var(--gold);background:rgba(201,169,110,.14);box-shadow:inset 0 0 0 1px var(--gold)}
+.preview{display:grid;grid-template-columns:1.2fr .8fr;gap:0;border:1px solid var(--line-dark);border-radius:6px;overflow:hidden;background:rgba(250,247,242,.03)}
+.preview-main{padding:clamp(1.4rem,3vw,2.4rem)}
+.preview-main h3{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;margin:.2rem 0 .6rem;color:var(--cream)}
+.preview-main p{font-weight:300;line-height:1.7;color:var(--muted-on-dark);max-width:30rem;margin:0}
+.preview-main .eyebrow{color:var(--gold-light);margin-bottom:.4rem}
+.preview-side{background:rgba(201,169,110,.10);padding:clamp(1.4rem,3vw,2.4rem);display:flex;flex-direction:column;gap:.7rem;justify-content:center}
+.preview-side .from{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.preview-side .price{font-family:var(--serif);font-size:3rem;line-height:1;color:var(--gold-light)}
+.preview-side .note{font-size:.86rem;color:var(--muted-on-dark);font-weight:300;line-height:1.55}
+
+@media(max-width:860px){.rituals{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){
+  .hero-lotus{justify-content:flex-end;padding-top:34svh}
+  .hero-lotus .drag-hint{display:none}
+  .preview{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){#gl{transition:none}}
