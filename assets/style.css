@@ -258,20 +258,26 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 #gl .gl-fallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;background:radial-gradient(600px 400px at 72% 30%,rgba(201,169,110,.32),transparent 70%)}
 
 /* Dark lotus hero — replaces the old two-column hero (copy + photo).
-   Same headline, lead and booking CTAs; the gold lotus turns behind
-   the copy on the right (desktop) and above it (mobile). */
+   Showcase hero copy ("Where stillness becomes luxury." / "Là où le
+   calme devient luxe."); the gold lotus turns behind the copy. */
 .hero-lotus{min-height:86svh;display:flex;flex-direction:column;justify-content:flex-end;padding:5.5rem clamp(1.2rem,5vw,4rem) 2.2rem;position:relative;overflow:hidden;background:radial-gradient(1100px 600px at 72% 30%,rgba(201,169,110,.20),transparent 60%),linear-gradient(180deg,#241B16 0%,#1E1713 70%);color:var(--ink-on-dark)}
 .hero-lotus .hero-copy{max-width:720px;position:relative;z-index:2}
-.hero-lotus .eyebrow{color:var(--gold-light)}
-.hero-lotus h1{font-family:var(--serif);font-weight:500;font-size:clamp(48px,6vw,86px);line-height:1.06;margin-bottom:26px;color:var(--cream)}
+.hero-lotus .eyebrow{color:var(--gold-light);font-size:.68rem;letter-spacing:.38em;font-weight:600;margin:0 0 1rem}
+.hero-lotus h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,7.2vw,5.4rem);line-height:.98;margin:0;color:var(--cream)}
 .hero-lotus h1 em{color:var(--gold-light);font-style:italic}
-.hero-lotus .lead{color:var(--muted-on-dark)}
+.hero-lotus .lede{font-size:clamp(1rem,1.6vw,1.2rem);font-weight:300;color:var(--muted-on-dark);max-width:34rem;line-height:1.65;margin:1.2rem 0 0}
 .hero-lotus .hero-meta{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:1.4rem;font-size:.86rem;letter-spacing:.06em;color:var(--muted-on-dark);align-items:center}
 .hero-lotus .hero-meta .stars{color:var(--gold);letter-spacing:.15em}
 .hero-lotus .text-link{color:var(--muted-on-dark)}
 .hero-lotus .drag-hint{position:absolute;top:16%;right:clamp(1rem,5vw,4rem);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,191,174,.75);writing-mode:vertical-rl;z-index:2}
 .hero-lotus .scroll-cue{margin-top:1.5rem;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem}
 .hero-lotus .scroll-cue::after{content:"";height:1px;width:64px;background:var(--gold);opacity:.6}
+.hero-lotus .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
+.hero-lotus .cta-row .btn{border-radius:999px;padding:.8rem 1.5rem;font-size:.86rem;letter-spacing:.12em;font-weight:500;min-height:3rem}
+.hero-lotus .cta-row .btn-gold{background:var(--gold);color:#241A10;border:1px solid var(--gold)}
+.hero-lotus .cta-row .btn-gold:hover{background:var(--gold-light)}
+.hero-lotus .cta-row .btn-ghost{border:1px solid rgba(245,239,230,.35);color:var(--cream);background:rgba(0,0,0,.15)}
+.hero-lotus .cta-row .btn-ghost:hover{border-color:var(--gold)}
 
 /* Ritual picker — dark section; picking a ritual recolours the lotus. */
 .picker-sec{background:linear-gradient(180deg,#241B16,#171210)}
