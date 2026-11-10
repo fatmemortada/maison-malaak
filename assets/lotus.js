@@ -130,13 +130,13 @@
         glContainer.appendChild(renderer.domElement);
 
         var scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x1e1713, 0.028);
+        scene.fog = new THREE.FogExp2(0x4a3a2e, 0.028);
         var camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 100);
         camera.position.set(0, 1.4, 9.2);
 
         var pmrem = new THREE.PMREMGenerator(renderer);
         var envScene = new THREE.Scene();
-        envScene.background = new THREE.Color(0x2a211c);
+        envScene.background = new THREE.Color(0x4a3a2e);
         function panel(x, y, z, w, h, c, i) {
             var p = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c }));
             p.material.color.multiplyScalar(i); p.position.set(x, y, z); p.lookAt(0, 0, 0); envScene.add(p);
@@ -197,7 +197,7 @@
         ring2.rotation.x = Math.PI / 1.8; ring2.rotation.y = 0.5; group.add(ring2);
 
         // Pedestal disc
-        var disc = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.9, 0.16, 64), new THREE.MeshPhysicalMaterial({ color: 0x2A211C, metalness: 0.4, roughness: 0.45 }));
+        var disc = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.9, 0.16, 64), new THREE.MeshPhysicalMaterial({ color: 0xC9A96E, metalness: 0.9, roughness: 0.3 }));
         disc.position.y = -0.78; group.add(disc);
         var rimDisc = new THREE.Mesh(new THREE.TorusGeometry(1.8, 0.025, 12, 100), ringMat);
         rimDisc.rotation.x = Math.PI / 2; rimDisc.position.y = -0.7; group.add(rimDisc);
