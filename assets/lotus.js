@@ -124,8 +124,6 @@
         } catch (e) { return false; }
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFShadowMap;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.12;
         if (renderer.outputColorSpace !== undefined) { renderer.outputColorSpace = THREE.SRGBColorSpace; }
@@ -148,7 +146,7 @@
         scene.environment = pmrem.fromScene(envScene, 0.06).texture;
 
         // Lights: key, fill, rim
-        var key = new THREE.DirectionalLight(0xffe3b3, 3.2); key.position.set(4, 6, 5); key.castShadow = true; scene.add(key);
+        var key = new THREE.DirectionalLight(0xffe3b3, 3.2); key.position.set(4, 6, 5); scene.add(key);
         var fill = new THREE.DirectionalLight(0xfff4e0, 0.55); fill.position.set(-5, 2, 4); scene.add(fill);
         var rim = new THREE.PointLight(0xC9A96E, 60, 30); rim.position.set(0, 3, -4); scene.add(rim);
         scene.add(new THREE.AmbientLight(0x40342a, 0.9));
@@ -174,7 +172,6 @@
             for (var i = 0; i < count; i++) {
                 var pivot = new THREE.Group();
                 var m = new THREE.Mesh(geo, petalMat);
-                m.castShadow = true;
                 m.rotation.x = tilt;
                 pivot.add(m);
                 pivot.rotation.y = (i / count) * Math.PI * 2;
@@ -189,7 +186,7 @@
 
         // Bud
         var bud = new THREE.Mesh(new THREE.SphereGeometry(0.34, 32, 24), new THREE.MeshPhysicalMaterial({ color: 0xE8D5A8, metalness: 0.7, roughness: 0.25, emissive: 0x6b5322, emissiveIntensity: 0.35 }));
-        bud.scale.set(1, 1.35, 1); bud.position.y = 0.28; bud.castShadow = true; group.add(bud);
+        bud.scale.set(1, 1.35, 1); bud.position.y = 0.28; group.add(bud);
 
         // Portal rings
         var ringMat = new THREE.MeshPhysicalMaterial({ color: 0xE8D5A8, metalness: 1, roughness: 0.22 });
@@ -199,13 +196,11 @@
         var ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.05, 0.02, 16, 140), ringMat.clone());
         ring2.rotation.x = Math.PI / 1.8; ring2.rotation.y = 0.5; group.add(ring2);
 
-        // Pedestal disc + ground shadow catcher
+        // Pedestal disc
         var disc = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.9, 0.16, 64), new THREE.MeshPhysicalMaterial({ color: 0x2A211C, metalness: 0.4, roughness: 0.45 }));
-        disc.position.y = -0.78; disc.receiveShadow = true; group.add(disc);
+        disc.position.y = -0.78; group.add(disc);
         var rimDisc = new THREE.Mesh(new THREE.TorusGeometry(1.8, 0.025, 12, 100), ringMat);
         rimDisc.rotation.x = Math.PI / 2; rimDisc.position.y = -0.7; group.add(rimDisc);
-        var ground = new THREE.Mesh(new THREE.CircleGeometry(16, 48), new THREE.ShadowMaterial({ opacity: 0.35 }));
-        ground.rotation.x = -Math.PI / 2; ground.position.y = -0.9; ground.receiveShadow = true; scene.add(ground);
         group.position.y = 0.55;
 
         // Gold dust particles with soft sprite
