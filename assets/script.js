@@ -29,3 +29,29 @@
     items.forEach(function(el){el.classList.add('is-visible');});
   }
 })();
+
+/* Ritual picker — moved here from lotus.js on 2026-11-23, when the 3D
+   lotus hero was removed. The buttons update the preview text only;
+   there is no lotus left to recolour. Runs on DOMContentLoaded so the
+   inline MALAAK_RITUALS data (declared after this script) exists. */
+document.addEventListener('DOMContentLoaded', function () {
+  var data = window.MALAAK_RITUALS;
+  if (!data) { return; }
+  var buttons = document.querySelectorAll('.ritual');
+  if (!buttons.length) { return; }
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      var r = data[btn.getAttribute('data-ritual')];
+      if (!r) { return; }
+      var set = function (id, v) { var el = document.getElementById(id); if (el) { el.textContent = v; } };
+      set('pvKicker', r.kicker);
+      set('pvName', r.name);
+      set('pvDesc', r.desc);
+      set('pvPrice', r.price);
+      set('pvFrom', r.from);
+      set('pvNote', r.note);
+    });
+  });
+});
