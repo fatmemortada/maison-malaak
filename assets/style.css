@@ -238,8 +238,9 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   3D Fine Lotus homepage — ported from the approved Maison Malaak 3D
-   showcase (2026-11-10). Compact sections throughout, per Fatme:
+   Maison Malaak homepage — 3D showcase (2026-11-10). The 3D lotus hero
+   was removed 2026-11-23 (Malak: not feminine); the hero is now a
+   serene gold image. Compact sections throughout, per Fatme:
    short pages, no long sections.
    ═══════════════════════════════════════════════════════════════════════ */
 :root{
@@ -249,18 +250,35 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 }
 .section-head{margin-bottom:34px}
 
-/* Fixed 3D layer: sits above page content, below the topbar (90),
-   the floating book button (80) and the mobile menu (100). It is
-   pointer-events:none, so it never blocks a click; the JS fades it to
-   opacity 0 whenever the hero and the picker are both out of view. */
-#gl{position:fixed;inset:0;z-index:5;pointer-events:none;transition:opacity .5s ease}
-#gl canvas{display:block;width:100%;height:100%}
-#gl .gl-fallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;background:radial-gradient(600px 400px at 72% 30%,rgba(201,169,110,.32),transparent 70%)}
+/* 2026-11-23: the fixed 3D lotus layer was removed (Malak: not feminine).
+   The hero is now a still golden-water image — see .hero-lotus .hero-bg. */
 
-/* Dark lotus hero — replaces the old two-column hero (copy + photo).
-   Showcase hero copy ("Where stillness becomes luxury." / "Là où le
-   calme devient luxe."); the gold lotus turns behind the copy. */
+/* Serene gold hero — since 2026-11-23 the 3D lotus is gone (Malak: not
+   feminine). A still golden-water image with a slow zoom sits behind
+   the showcase copy ("Where stillness becomes luxury." / "Là où le
+   calme devient luxe."), with a dark scrim so the text stays readable. */
 .hero-lotus{min-height:86svh;display:flex;flex-direction:column;justify-content:flex-end;padding:5.5rem clamp(1.2rem,5vw,4rem) 2.2rem;position:relative;overflow:hidden;background:radial-gradient(1100px 600px at 72% 30%,rgba(201,169,110,.20),transparent 60%),linear-gradient(180deg,#241B16 0%,#1E1713 70%);color:var(--ink-on-dark)}
+.hero-lotus .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;animation:heroZoom 28s ease-in-out infinite alternate}
+.hero-lotus::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(30,23,19,.58),rgba(30,23,19,.26) 42%,rgba(30,23,19,.82));pointer-events:none}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+/* Moving hero (2026-11-23): the video generator was down, so the Halo-style
+   motion is done in CSS — a soft light shimmer and petals drifting down
+   over the still golden-water image, plus the slow zoom above. */
+.hero-lotus .hero-shimmer{position:absolute;inset:0;z-index:2;background:radial-gradient(600px 300px at 70% 40%,rgba(255,230,180,.30),transparent 70%);animation:heroShimmer 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes heroShimmer{from{opacity:.35;transform:translateX(-2%)}to{opacity:.85;transform:translateX(2%)}}
+.hero-lotus .hero-petal{position:absolute;top:-6%;z-index:2;width:16px;height:12px;background:radial-gradient(ellipse at 30% 30%,rgba(255,226,232,.95),rgba(255,183,197,.6) 70%);border-radius:100% 6px 100% 6px;filter:blur(.5px);opacity:0;animation:petalFall linear infinite;pointer-events:none}
+.hero-lotus .hero-petal.p1{left:12%;animation-duration:14s;animation-delay:0s}
+.hero-lotus .hero-petal.p2{left:28%;width:12px;height:9px;animation-duration:18s;animation-delay:4s}
+.hero-lotus .hero-petal.p3{left:46%;width:20px;height:15px;animation-duration:16s;animation-delay:2s}
+.hero-lotus .hero-petal.p4{left:63%;width:13px;height:10px;animation-duration:20s;animation-delay:7s}
+.hero-lotus .hero-petal.p5{left:78%;width:18px;height:13px;animation-duration:15s;animation-delay:1s}
+.hero-lotus .hero-petal.p6{left:90%;width:11px;height:8px;animation-duration:19s;animation-delay:5s}
+@keyframes petalFall{0%{transform:translate3d(0,-8vh,0) rotate(0deg);opacity:0}8%{opacity:.85}50%{transform:translate3d(-24px,45vh,0) rotate(160deg);opacity:.8}100%{transform:translate3d(18px,95vh,0) rotate(320deg);opacity:0}}
+/* Moving water (2026-11-23): two thin light-streak layers drift in opposite
+   directions across the lower half of the hero, where the water is, so the
+   water itself shimmers. Faded in with a mask so the top stays clean. */
+.hero-lotus .hero-water{position:absolute;left:0;right:0;bottom:0;height:52%;z-index:2;pointer-events:none;mix-blend-mode:soft-light;background:repeating-linear-gradient(170deg,rgba(255,240,200,0) 0 30px,rgba(255,240,200,.5) 30px 32px,rgba(255,240,200,0) 32px 76px);background-size:240px 100%;filter:blur(2px);-webkit-mask-image:linear-gradient(180deg,transparent,#000 35%);mask-image:linear-gradient(180deg,transparent,#000 35%);animation:waterDrift 16s linear infinite}
+@keyframes waterDrift{from{background-position:0 0}to{background-position:240px 0}}
 .hero-lotus .hero-copy{max-width:720px;position:relative;z-index:2}
 .hero-lotus .eyebrow{color:var(--gold-light);font-size:.68rem;letter-spacing:.38em;font-weight:600;margin:0 0 1rem}
 .hero-lotus h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,7.2vw,5.4rem);line-height:.98;margin:0;color:var(--cream)}
@@ -269,7 +287,6 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 .hero-lotus .hero-meta{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:1.4rem;font-size:.86rem;letter-spacing:.06em;color:var(--muted-on-dark);align-items:center}
 .hero-lotus .hero-meta .stars{color:var(--gold);letter-spacing:.15em}
 .hero-lotus .text-link{color:var(--muted-on-dark)}
-.hero-lotus .drag-hint{position:absolute;top:16%;right:clamp(1rem,5vw,4rem);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(203,191,174,.75);writing-mode:vertical-rl;z-index:2}
 .hero-lotus .scroll-cue{margin-top:1.5rem;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem}
 .hero-lotus .scroll-cue::after{content:"";height:1px;width:64px;background:var(--gold);opacity:.6}
 .hero-lotus .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
@@ -279,7 +296,7 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 .hero-lotus .cta-row .btn-ghost{border:1px solid rgba(245,239,230,.35);color:var(--cream);background:rgba(0,0,0,.15)}
 .hero-lotus .cta-row .btn-ghost:hover{border-color:var(--gold)}
 
-/* Ritual picker — dark section; picking a ritual recolours the lotus. */
+/* Ritual picker — dark section; picking a ritual updates the preview. */
 .picker-sec{background:linear-gradient(180deg,#241B16,#171210)}
 .picker-sec .title{color:var(--cream)}
 .picker-sec .lead{color:var(--muted-on-dark)}
@@ -302,7 +319,6 @@ body.menu-open .mobile-menu{opacity:1;pointer-events:auto;transform:translateY(0
 @media(max-width:860px){.rituals{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){
   .hero-lotus{justify-content:flex-end;padding-top:34svh}
-  .hero-lotus .drag-hint{display:none}
   .preview{grid-template-columns:1fr}
 }
-@media(prefers-reduced-motion:reduce){#gl{transition:none}}
+@media(prefers-reduced-motion:reduce){.hero-lotus .hero-bg,.hero-lotus .hero-shimmer,.hero-lotus .hero-petal,.hero-lotus .hero-water{animation:none}}
